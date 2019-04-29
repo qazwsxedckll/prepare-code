@@ -56,14 +56,17 @@ endfunction
 function! s:gen_cpp_header_code()
     let lines = <sid>get_prepare_code("h")
     let target = prepare#util#get_current_file_base_name()
+    toupper(target[0])
     let texts = prepare#util#replace_texts(lines, "snippet", target)
-    let texts = prepare#util#replace_texts(texts, "SNIPPET", toupper(target))
+    texts = prepare#util#replace_texts(texts, "SNIPPET", toupper(target))
     call prepare#util#write_texts(texts)
 endfunction
 
 " 生成cpp实现代码
 function! s:gen_cpp_implement_code()
     let lines = <sid>get_prepare_code("cpp")
+    let target = prepare#util#get_current_file_base_name()
+    let texts = prepare#util#replace_texts(lines, "snippet", target)
     call prepare#util#write_texts(lines)
 endfunction
 
