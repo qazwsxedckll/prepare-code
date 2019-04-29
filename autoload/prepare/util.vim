@@ -36,7 +36,8 @@ endfunction
 " 替换字符串
 function! prepare#util#replace_string(str, src, target)
     let noic = '\C' . a:src
-    return substitute(a:str, noic, a:target, "g")
+    let target = toupper(a:target[0]) . a:target[1:]
+    return substitute(a:str, noic, target, "g")
 endfunction
 
 " 替换文本
